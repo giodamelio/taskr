@@ -1,0 +1,101 @@
+$SIDEBAR_WIDTH: 200px
+$primary: #212434
+
+@font-face
+	font-family: "Exo2Light"
+	src: url("../fonts/exo2-light-webfont.ttf")
+
+@font-face
+	font-family: "Exo2Medium"
+	src: url("../fonts/exo2-medium-webfont.ttf")
+
+@font-face
+	font-family: "Exo2Bold"
+	src: url("../fonts/exo2-bold-webfont.ttf")
+
+
+*, *::before, *::after
+	box-sizing: border-box
+
+html, body, h1, h2, h3, h4, h5, h6, p, div, section, aside, article, ol, ul, li
+	margin: 0
+	padding: 0
+
+body
+	font: 100 14px/18px "Lucida Grande", arial
+	height: 100vh
+
+.button
+	display: inline-block
+	background: $primary
+	border-radius: 2px
+	padding: 10px 15px
+	font: 700 15px/15px "Arial"
+	color: #ddd
+	cursor: pointer
+	text-shadow: rgba(0,0,0,0.5)
+
+#appbar
+	background: #2c2c2c
+	height: 30px
+	#exit
+		float: right
+		font: 100 15px/15px "Exo2Medium"
+		padding: 7px 20px 8px 20px
+		color: #fff
+		text-shadow: 2px 2px rgba(0,0,0,0.4)
+		background: #dd4775
+		cursor: pointer
+#app
+	height: calc(100% - 30px)
+	aside
+		width: $SIDEBAR_WIDTH
+		background: $primary
+		height: 100%
+		float: left
+		h2
+			font: 500 19px/19px "Exo2Medium"
+			color: #fff
+			padding: 10px
+			text-shadow: 2px 2px 0 rgba(0,0,0,0.5)
+			a
+				color: #fff
+				text-decoration: none
+		ul a
+			display: block
+			color: #3e435b
+			font: 100 17px/17px "Exo2Light"
+			padding: 5px 0 5px 25px
+			text-decoration: none
+			text-transform: uppercase
+			&:hover, &.active
+				text-shadow: 2px 2px rgba(0,0,0,0.2)
+				color: #fff
+				background: #34374a
+
+	#main
+		float: left
+		width: calc(100% - 200px)
+		height: 100%
+		background: #f3f3f3
+		padding: 10px
+		#add_task
+			margin: 20px
+			input, textarea
+				outline: none
+				display: block
+				border: 0
+				background: rgba(255, 255, 255, 0)
+				border-bottom: 1px solid #aaa
+				width: 50%
+			input
+				font: 500 19px/19px "Exo2Light"
+				padding: 10px 20px
+			.button
+				margin: 10px
+		.task
+			border-radius: 3px
+			box-shadow: 0 2px 2px rgba(0,0,0,0.3)
+			padding: 10px
+			margin: 10px 0
+			background: #fff

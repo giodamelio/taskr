@@ -1,0 +1,14 @@
+<form id="add_task">
+	<input type="text" id="title" placeholder="Title" ng-model="title">
+	<textarea name="description" id="description" ng-model="description" placeholder="description" cols="30" rows="10"></textarea>
+	<a ng-click="add()" class="button button-primary">Add Task</a>
+</form>
+<div class="task" ng-repeat="task in tasks">
+	<h3>{{task.title}}</h3>
+	<p>{{task.description}}</p>
+	<ul>
+		<li ng-repeat="entry in task.entries">
+			{{minutes_spent(entry)}} minutes
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="taskr">
+	<head>
+		<title>Taskr</title>
+		<link rel="stylesheet" href="assets/css/styles.css">
+		<script src="assets/js/angular.min.js"></script>
+		<script src="assets/js/angular-resource.min.js"></script>
+		<script src="assets/js/angular-route.min.js"></script>
+		<script src="assets/js/localstoragedb.min.js"></script>
+		<script src="assets/js/db.js"></script>
+		<script src="assets/js/app.js"></script>
+	</head>
+	<body>
+		<div id="appbar" ng-controller="appbarCtrl">
+			<a ng-click="exit()" id="exit">X</a>
+		</div>
+		<div id="app">
+			<aside ng-controller="companiesCtrl">
+				<h2><a href="#">Overview</a></h2>
+				<h2>Projects</h2>
+				<ul>
+					<li ng-repeat="company in companies">
+						<a href="#/{{company.ID}}" ng-click="setCompany(company)">{{company.name}}</a>
+					</li>
+				</ul>
+			</aside>
+			<div id="main" ng-view></div>
+		</div>
+	</body>
+</html>

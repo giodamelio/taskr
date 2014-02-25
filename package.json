@@ -1,0 +1,10 @@
+{
+  "name": "taskr",
+  "main": "app.html",
+  "window" : {
+  	"toolbar" : false,
+  	"frame" : false,
+  	"width" : 800,
+  	"height" : 500
+  }
+}
