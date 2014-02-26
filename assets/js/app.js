@@ -27,14 +27,24 @@ taskr.controller('companiesCtrl', function($scope, $location){
 	$scope.companies = db.query('companies');
 
 	$scope.show_add = function(){
-		document.getElementById('add_company').setAttribute('class', 'show');
+		document.getElementById('add-company-sidebar').setAttribute('class', 'show');
 	}
 	$scope.hide_add = function(){
-		document.getElementById('add_company').setAttribute('class', '');
+		document.getElementById('add-company-sidebar').setAttribute('class', '');
 	}
 
 	$scope.add = function(){
-
+		if($scope.name.length == 0) return;
+		var data = {
+			name: $scope.name,
+			hourly_rate : $scope.hourly_rate,
+			currency: $scope.currency
+		};
+		var id = db.insert('companies', data);
+		db.commit();
+		data.ID = id;
+		$scope.hide_add();
+		$scope.companies.push(data)
 	}
 })
 
@@ -85,13 +95,15 @@ taskr.controller('taskCtrl', function($scope, $location, $routeParams){
 	//POST: 1 if the task is added to the database, otherwise 0
 	//SIDE-EFFECTS: inserts data in to the database
 	$scope.add = function(){
-		db.insert('tasks', {
+		if($scope.title.length == 0) return;
+		var data = {
 			company: $routeParams.companyId,
 			title: $scope.title,
 			description: $scope.description,
 			complete: false
-		});
+		};
+		db.insert('tasks', data);
 		db.commit();
-		$scope.tasks.push({title: $scope.title, description: $scope.description, complete: false});
+		$scope.tasks.push(data);
 	}
 });

@@ -29,7 +29,25 @@ body {
   font: 700 15px/15px "Arial";
   color: #dddddd;
   cursor: pointer;
-  text-shadow: rgba(0, 0, 0, 0.5); }
+  text-shadow: rgba(0, 0, 0, 0.5);
+  text-decoration: none; }
+
+.button-secondary {
+  background: #353a53; }
+
+.button-warning {
+  background: #eb2e3c; }
+
+#add-company-sidebar {
+  width: 200px;
+  position: absolute;
+  padding: 10px;
+  height: 100vh;
+  left: -200px;
+  background: #0d0e15;
+  transition: left 0.5s; }
+  #add-company-sidebar.show {
+    left: 0; }
 
 #app {
   height: 100vh; }

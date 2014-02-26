@@ -34,6 +34,21 @@ body
 	color: #ddd
 	cursor: pointer
 	text-shadow: rgba(0,0,0,0.5)
+	text-decoration: none
+.button-secondary
+	background: lighten($primary, 10%)
+.button-warning
+	background: #EB2E3C
+#add-company-sidebar
+	width: $SIDEBAR_WIDTH
+	position: absolute
+	padding: 10px
+	height: 100vh
+	left: -$SIDEBAR_WIDTH
+	background: darken($primary, 10%)
+	transition: left 0.5s
+	&.show
+		left: 0
 #app
 	height: 100vh
 	aside

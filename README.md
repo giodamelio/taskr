@@ -8,7 +8,7 @@ It's a [node-webkit](https://github.com/rogerwang/node-webkit) app so it needs t
 It can be developed under http://localhost though as it's just vanilla JavaScript and HTML. It uses [angular](http://angularjs.org/)
 to manage views and logic and [localStorageDB](http://nadh.in/code/localstoragedb/) to handle database transactions.
 
-#How to run
+##How to run
 There are two ways to run the app during development (when it's released it will be packed in its own executable).
 
 1. Drop it in your webroot folder and view it in your chrome-browser under localhost (or any other vhosts config you want)
