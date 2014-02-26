@@ -13,18 +13,16 @@
 	<body>
 		<div id="app">
 			<aside ng-controller="companiesCtrl">
-				<div id="add-company-sidebar">
-					<form>
-						<h3>Add a Company</h3>
-						<input type="text" name="name" id="name" ng-model="name" placeholder="name">
-						<input type="text" name="hourly_rate" id="hourly_rate" ng-model="hourly_rate" placeholder="Hourly Rate">
-						<input type="text" name="currency" id="currency" ng-model="currency" placeholder="currency">
-						<a ng-click="add()" class="button button-secondary">Add Company</a>
-						<a ng-click="hide_add()" class="button button-warning">Cancel</a>
-					</form>
-				</div>
+				<div id="add_company_sidebar"><form>
+					<h3>Add a Company</h3>
+					<input type="text" name="name" id="name" ng-model="name" placeholder="name">
+					<input type="text" name="hourly_rate" id="hourly_rate" ng-model="hourly_rate" placeholder="Hourly Rate">
+					<input type="text" name="currency" id="currency" ng-model="currency" placeholder="currency">
+					<a ng-click="add()" class="button button-secondary">Add Company</a>
+					<a ng-click="hide_add()" class="button button-warning">Cancel</a>
+				</form></div>
 				<h2><a href="#">Overview</a></h2>
-				<h2>Companies <a ng-click="show_add()">+</a></h2>
+				<h2>Companies <a ng-click="show_add()" id="add_company_button">+</a></h2>
 				<ul>
 					<li ng-repeat="company in companies">
 						<a href="#/{{company.ID}}" ng-click="setCompany(company)">{{company.name}}</a>

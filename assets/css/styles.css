@@ -38,7 +38,7 @@ body {
 .button-warning {
   background: #eb2e3c; }
 
-#add-company-sidebar {
+#add_company_sidebar {
   width: 200px;
   position: absolute;
   padding: 10px;
@@ -46,8 +46,16 @@ body {
   left: -200px;
   background: #0d0e15;
   transition: left 0.5s; }
-  #add-company-sidebar.show {
+  #add_company_sidebar.show {
     left: 0; }
+
+#add_company_button {
+  background: #353a53;
+  padding: 2px 7px;
+  border-radius: 50%;
+  margin-left: 20px;
+  display: inline-block;
+  cursor: pointer; }
 
 #app {
   height: 100vh; }

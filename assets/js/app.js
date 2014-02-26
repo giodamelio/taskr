@@ -27,10 +27,10 @@ taskr.controller('companiesCtrl', function($scope, $location){
 	$scope.companies = db.query('companies');
 
 	$scope.show_add = function(){
-		document.getElementById('add-company-sidebar').setAttribute('class', 'show');
+		document.getElementById('add_company_sidebar').setAttribute('class', 'show');
 	}
 	$scope.hide_add = function(){
-		document.getElementById('add-company-sidebar').setAttribute('class', '');
+		document.getElementById('add_company_sidebar').setAttribute('class', '');
 	}
 
 	$scope.add = function(){
