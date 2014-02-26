@@ -3,7 +3,7 @@
   "main": "app.html",
   "window" : {
   	"toolbar" : false,
-  	"frame" : false,
+  	"frame" : true,
   	"width" : 800,
   	"height" : 500
   }
