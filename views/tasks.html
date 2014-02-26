@@ -6,9 +6,10 @@
 <div class="task" ng-repeat="task in tasks">
 	<h3>{{task.title}}</h3>
 	<p>{{task.description}}</p>
-	<ul>
-		<li ng-repeat="entry in task.entries">
-			{{minutes_spent(entry)}} minutes
-		</li>
+	<ul>		
+		<li ng-repeat="entry in task.entries" style="width: {{time_spent(entry, 'minutes')}}px" class="bar">{{time_spent(entry, 'hours')}} Hours</li>
 	</ul>
+	<p>
+		Total Time: {{total_time(task)}} hours making {{company.hourly_rate * total_time(task)}} {{company.currency}}
+	</p>
 </div>
