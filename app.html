@@ -2,6 +2,7 @@
 <html ng-app="taskr">
 	<head>
 		<title>Taskr</title>
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<script src="assets/js/angular.min.js"></script>
 		<script src="assets/js/angular-resource.min.js"></script>
@@ -11,6 +12,7 @@
 		<script src="assets/js/app.js"></script>
 	</head>
 	<body>
+		<div id="modal-overlay"></div>
 		<div id="app">
 			<aside ng-controller="companiesCtrl">
 				<div id="add_company_sidebar"><form>
@@ -22,10 +24,11 @@
 					<a ng-click="hide_add()" class="button button-warning">Cancel</a>
 				</form></div>
 				<h2><a href="#">Overview</a></h2>
-				<h2>Companies <a ng-click="show_add()" id="add_company_button">+</a></h2>
+				<h2><a href="#/settings">Settings</a></h2>
+				<h2>Companies <a ng-click="show_add()" id="add_company_button"><i class="fa fa-plus-circle"></i></a></h2>
 				<ul>
 					<li ng-repeat="company in companies">
-						<a href="#/{{company.ID}}" ng-click="setCompany(company)">{{company.name}}</a>
+						<a href="#/company/{{company.ID}}" ng-click="setCompany(company)">{{company.name}}</a>
 					</li>
 				</ul>
 			</aside>

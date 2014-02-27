@@ -1,7 +1,7 @@
 var db = new localStorageDB('taskr', localStorage);
 
 //db.drop();
-//i uncomment this and run the app once to clear the database and comment it out again
+//i uncomment this and run the app once to clear the database and comment it out and run the app again
 
 if(db.isNew()){
 	db.createTable("companies", ['name', 'hourly_rate', 'currency']);

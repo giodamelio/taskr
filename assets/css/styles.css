@@ -10,6 +10,10 @@
   font-family: "Exo2Bold";
   src: url("../fonts/exo2-bold-webfont.ttf"); }
 
+@font-face {
+  font-family: "FontAwesome";
+  src: url("../fonts/fontawesome-webfont.ttf"); }
+
 *, *::before, *::after {
   box-sizing: border-box; }
 
@@ -21,6 +25,19 @@ body {
   font: 100 14px/18px "Lucida Grande", arial;
   height: 100vh; }
 
+#modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 9;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  opacity: 0;
+  transition: all 0.5s; }
+  #modal-overlay.show {
+    display: block;
+    opacity: 1; }
+
 .button {
   display: inline-block;
   background: #212434;
@@ -30,13 +47,17 @@ body {
   color: #dddddd;
   cursor: pointer;
   text-shadow: rgba(0, 0, 0, 0.5);
-  text-decoration: none; }
+  text-decoration: none;
+  border: 0; }
 
 .button-secondary {
   background: #353a53; }
 
 .button-warning {
   background: #eb2e3c; }
+
+a {
+  text-decoration: none; }
 
 #add_company_sidebar {
   width: 200px;
@@ -45,15 +66,17 @@ body {
   height: 100vh;
   left: -200px;
   background: #0d0e15;
-  transition: left 0.5s; }
+  transition: left 0.5s;
+  color: white; }
+  #add_company_sidebar input {
+    border: 1px solid #222222;
+    padding: 5px;
+    border-radius: 4px; }
   #add_company_sidebar.show {
     left: 0; }
 
 #add_company_button {
-  background: #353a53;
-  padding: 2px 7px;
-  border-radius: 50%;
-  margin-left: 20px;
+  float: right;
   display: inline-block;
   cursor: pointer; }
 
@@ -64,56 +87,64 @@ body {
     background: #212434;
     height: 100%;
     float: left; }
+    #app aside h2, #app aside h2 a {
+      color: #eeeeee;
+      font: 100 18px/18px "Exo2Medium", "Helvetica Neue"; }
     #app aside h2 {
-      font: 500 19px/19px "Exo2Medium";
-      color: white;
-      padding: 10px;
-      text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5); }
-      #app aside h2 a {
-        color: white;
-        text-decoration: none; }
+      padding: 10px; }
     #app aside ul a {
+      font: 100 15px/15px "Exo2Light";
+      text-transform: uppercase;
+      color: #494f72;
       display: block;
-      color: #3e435b;
-      font: 100 17px/17px "Exo2Light";
-      padding: 5px 0 5px 25px;
-      text-decoration: none;
-      text-transform: uppercase; }
+      padding: 5px 20px; }
       #app aside ul a:hover, #app aside ul a.active {
-        text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
         color: white;
-        background: #34374a; }
+        background: rgba(255, 255, 255, 0.05); }
   #app #main {
     float: left;
     width: calc(100% - 200px);
-    height: 100%;
+    height: 100vh;
+    overflow-y: auto;
     background: #f3f3f3;
     padding: 10px; }
     #app #main #add_task {
-      margin: 20px; }
+      top: -300px;
+      transition: all 0.5s;
+      z-index: 10;
+      left: calc(50% - 250px);
+      background: white;
+      width: 500px;
+      padding: 20px;
+      position: absolute; }
+      #app #main #add_task.show {
+        top: calc(50% - 150px); }
       #app #main #add_task input, #app #main #add_task textarea {
         outline: none;
         display: block;
         border: 0;
         background: rgba(255, 255, 255, 0);
         border-bottom: 1px solid #aaaaaa;
-        width: 50%; }
+        width: 50%;
+        width: 100%; }
       #app #main #add_task input {
         font: 500 19px/19px "Exo2Light";
         padding: 10px 20px; }
-      #app #main #add_task .button {
-        margin: 10px; }
     #app #main .task {
       border-radius: 3px;
       box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
       padding: 10px;
       margin: 10px 0;
       background: white; }
+      #app #main .task button {
+        float: right; }
+        #app #main .task button.active {
+          background: #eb2e3c; }
       #app #main .task ul {
         list-style-type: none; }
       #app #main .task .bar {
-        background: #212434;
+        background: white;
         margin: 10px 0;
-        color: white;
+        color: #333333;
         font: 100 12px/12px arial;
         padding: 7px 5px; }

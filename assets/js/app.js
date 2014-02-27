@@ -5,7 +5,11 @@ taskr.config(['$routeProvider',function($routeProvider) {
 		templateUrl: 'views/index.html',
 		controller : 'indexCtrl'
 	}).
-	when('/:companyId',{
+	when('/settings',{
+		templateUrl: 'views/settings.html',
+		controller: 'settingsCtrl'
+	}).
+	when('/company/:companyId',{
 		templateUrl: 'views/tasks.html',
 		controller : 'taskCtrl'
 	})
@@ -29,6 +33,7 @@ taskr.controller('companiesCtrl', function($scope, $location){
 	$scope.show_add = function(){
 		document.getElementById('add_company_sidebar').setAttribute('class', 'show');
 	}
+
 	$scope.hide_add = function(){
 		document.getElementById('add_company_sidebar').setAttribute('class', '');
 	}
@@ -59,14 +64,10 @@ taskr.controller('taskCtrl', function($scope, $location, $routeParams){
 
 	$scope.tasks = db.query('tasks', {company : $routeParams.companyId});
 	for(var i = 0; i < $scope.tasks.length; i++){
+		$scope.tasks[i].active = 'inactive';
 		$scope.tasks[i].entries = db.query('entries',{task: $scope.tasks[i].ID});
 	}
 
-	//FUNCTION: time_spent(Entry entry * string denomination) -> string
-	//DESCRIPTION: calculate how much time was spent on this entry. The denomination can be either
-	//             hours or minutes
-	//PRE: entry.started_at is less than entry.ended_at
-	//POST: the time difference in hours or minutes between entry.started_at and entry.ended_at 
 	$scope.time_spent = function(entry, denomination){
 		var start = new Date(entry.started_at);
 		var end = new Date(entry.ended_at);
@@ -75,25 +76,15 @@ taskr.controller('taskCtrl', function($scope, $location, $routeParams){
 		return Math.round(time);
 	}
 
-	//FUNCTION: total_time(Task task) -> Number
-	//DESCRIPTION: Calculates the total amount of time (in hours) spent on task
-	//PRE: 
-	//POST: A number signifyin hours spent on task
-	//SIDE-EFFECTS: runs a db-query
 	$scope.total_time = function(task){
 		var entries = db.query('entries', {task: task.ID});
 		var total_time = 0;
 		for(i = 0; i < entries.length; i++){
-			total_time += $scope.time_spent(entries[i], 'hours');
+			total_time += $scope.time_spent(entries[i], 'minutes');
 		}
 		return total_time;
 	}
 	
-	//FUNCTION: add() -> Int
-	//DESCRIPTION: Add a task to a company
-	//PRE: the function is executed via a form with $scope.title and $scope.description defined
-	//POST: 1 if the task is added to the database, otherwise 0
-	//SIDE-EFFECTS: inserts data in to the database
 	$scope.add = function(){
 		if($scope.title.length == 0) return;
 		var data = {
@@ -102,8 +93,43 @@ taskr.controller('taskCtrl', function($scope, $location, $routeParams){
 			description: $scope.description,
 			complete: false
 		};
-		db.insert('tasks', data);
+		var id = db.insert('tasks', data);
 		db.commit();
+		data.ID = id;
+		data.entries = [];
 		$scope.tasks.push(data);
+		$scope.hide_add();
 	}
+
+	$scope.toggle_timer = function(task){
+		if(task.start_time == null){
+			task.start_time = new Date();
+			task.active = 'active';
+		}
+		else{
+			task.end_time = new Date();
+			var entry_data = {task: task.ID, started_at: task.start_time, ended_at: task.end_time};
+			db.insert('entries', entry_data);
+			db.commit();
+			task.entries.push(entry_data);
+			task.start_time = null;
+			task.active = false;
+		}
+	}
+
+	$scope.show_add = function(){
+		document.getElementById('modal-overlay').setAttribute('class','show');
+		document.getElementById('add_task').setAttribute('class','show');
+	}
+	$scope.hide_add = function(){
+		document.getElementById('modal-overlay').setAttribute('class','');
+		document.getElementById('add_task').setAttribute('class','');
+	}
+	document.getElementById('modal-overlay').addEventListener('click', function(){
+		$scope.hide_add();
+	});
+});
+
+taskr.controller('settingsCtrl', function($scope){
+
 });

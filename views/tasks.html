@@ -3,13 +3,15 @@
 	<textarea name="description" id="description" ng-model="description" placeholder="description" cols="30" rows="10"></textarea>
 	<a ng-click="add()" class="button button-primary">Add Task</a>
 </form>
+<button class="button button-primary" ng-click="show_add()">Add a Task</button>
 <div class="task" ng-repeat="task in tasks">
+	<button class="button button-secondary button-rounded {{task.active}}" ng-click="toggle_timer(task)"><i class="fa fa-play"></i></button>
 	<h3>{{task.title}}</h3>
 	<p>{{task.description}}</p>
 	<ul>		
-		<li ng-repeat="entry in task.entries" style="width: {{time_spent(entry, 'minutes')}}px" class="bar">{{time_spent(entry, 'hours')}} Hours</li>
+		<li ng-repeat="entry in task.entries" style="border-left: {{time_spent(entry, 'minutes')}}px solid #f00" class="bar">{{time_spent(entry, 'minutes')}} Minutes</li>
 	</ul>
 	<p>
-		Total Time: {{total_time(task)}} hours making {{company.hourly_rate * total_time(task)}} {{company.currency}}
+		Total Time: {{total_time(task) / 60 | number:1}} Hours making {{company.hourly_rate / 60 * total_time(task) | number:1}} {{company.currency}}
 	</p>
 </div>
