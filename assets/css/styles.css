@@ -25,126 +25,88 @@ body {
   font: 100 14px/18px "Lucida Grande", arial;
   height: 100vh; }
 
-#modal-overlay {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 9;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;
-  opacity: 0;
-  transition: all 0.5s; }
-  #modal-overlay.show {
-    display: block;
-    opacity: 1; }
+p {
+  padding: 10px 0; }
 
 .button {
-  display: inline-block;
-  background: #212434;
+  -webkit-appearance: none;
+  outline: none;
+  border: 0;
   border-radius: 2px;
-  padding: 10px 15px;
-  font: 700 15px/15px "Arial";
-  color: #dddddd;
-  cursor: pointer;
-  text-shadow: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
-  border: 0; }
+  padding: 5px 10px;
+  color: white; }
 
 .button-secondary {
-  background: #353a53; }
+  background: #3c3c3c; }
 
 .button-warning {
   background: #eb2e3c; }
 
+input {
+  padding: 5px;
+  width: 100%;
+  border-radius: 2px;
+  border: 0;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4) inset;
+  outline: none; }
+
 a {
   text-decoration: none; }
 
-#add_company_sidebar {
-  width: 200px;
-  position: absolute;
-  padding: 10px;
-  height: 100vh;
-  left: -200px;
-  background: #0d0e15;
-  transition: left 0.5s;
-  color: white; }
-  #add_company_sidebar input {
-    border: 1px solid #222222;
-    padding: 5px;
-    border-radius: 4px; }
-  #add_company_sidebar.show {
-    left: 0; }
-
-#add_company_button {
-  float: right;
-  display: inline-block;
-  cursor: pointer; }
-
-#app {
+aside, #main {
+  float: left;
   height: 100vh; }
-  #app aside {
-    width: 200px;
-    background: #212434;
-    height: 100%;
-    float: left; }
-    #app aside h2, #app aside h2 a {
-      color: #eeeeee;
-      font: 100 18px/18px "Exo2Medium", "Helvetica Neue"; }
-    #app aside h2 {
-      padding: 10px; }
-    #app aside ul a {
-      font: 100 15px/15px "Exo2Light";
-      text-transform: uppercase;
-      color: #494f72;
-      display: block;
-      padding: 5px 20px; }
-      #app aside ul a:hover, #app aside ul a.active {
-        color: white;
-        background: rgba(255, 255, 255, 0.05); }
-  #app #main {
-    float: left;
-    width: calc(100% - 200px);
-    height: 100vh;
-    overflow-y: auto;
-    background: #f3f3f3;
+
+aside {
+  width: 200px;
+  background: #222222; }
+  aside h2, aside h2 a {
+    color: white;
+    font: 500 15px/15px "Exo2Light"; }
+  aside h2 {
     padding: 10px; }
-    #app #main #add_task {
-      top: -300px;
-      transition: all 0.5s;
-      z-index: 10;
-      left: calc(50% - 250px);
-      background: white;
-      width: 500px;
-      padding: 20px;
-      position: absolute; }
-      #app #main #add_task.show {
-        top: calc(50% - 150px); }
-      #app #main #add_task input, #app #main #add_task textarea {
-        outline: none;
-        display: block;
-        border: 0;
-        background: rgba(255, 255, 255, 0);
-        border-bottom: 1px solid #aaaaaa;
-        width: 50%;
-        width: 100%; }
-      #app #main #add_task input {
-        font: 500 19px/19px "Exo2Light";
-        padding: 10px 20px; }
-    #app #main .task {
-      border-radius: 3px;
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-      padding: 10px;
-      margin: 10px 0;
-      background: white; }
-      #app #main .task button {
-        float: right; }
-        #app #main .task button.active {
-          background: #eb2e3c; }
-      #app #main .task ul {
-        list-style-type: none; }
-      #app #main .task .bar {
-        background: white;
-        margin: 10px 0;
-        color: #333333;
-        font: 100 12px/12px arial;
-        padding: 7px 5px; }
+  aside ul a {
+    display: block;
+    padding: 5px 20px;
+    color: white;
+    font: 800 13px/13px arial; }
+    aside ul a:hover {
+      background: #2f2f2f; }
+  aside form {
+    padding: 5px 10px; }
+    aside form .kinda-hidden {
+      opacity: 0.3; }
+    aside form #hidden-form {
+      display: none; }
+      aside form #hidden-form.show {
+        display: block; }
+    aside form label {
+      font: 800 9px/9px arial;
+      display: block;
+      color: white;
+      margin: 5px 0; }
+
+#main {
+  background: #f8f8f8;
+  overflow-y: auto;
+  width: calc(100% - 200px);
+  padding: 20px; }
+  #main table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 95%;
+    margin: 0 auto;
+    font: 100 13px/13px arial;
+    color: #505050; }
+    #main table th, #main table td {
+      text-align: left;
+      padding: 5px 10px; }
+    #main table tr.task:last-child td {
+      padding: 5px 10px 20px 10px;
+      border-bottom: 1px solid #aaaaaa; }
+    #main table .button {
+      background: transparent;
+      border: 0;
+      font-size: 18px; }
+      #main table .button:hover {
+        color: #eb2e3c; }

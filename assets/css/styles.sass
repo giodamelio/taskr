@@ -1,5 +1,6 @@
 $SIDEBAR_WIDTH: 200px
-$primary: #212434
+$primary: #222
+$warning: #EB2E3C
 
 @font-face
 	font-family: "Exo2Light"
@@ -27,120 +28,82 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, section, aside, article, ol, ul, li
 body
 	font: 100 14px/18px "Lucida Grande", arial
 	height: 100vh
-#modal-overlay
-	width: 100%
-	height: 100%
-	position: absolute
-	z-index: 9
-	background: rgba(0,0,0,0.7)
-	display: none
-	opacity: 0
-	transition: all 0.5s
-	&.show
-		display: block
-		opacity: 1
+p
+	padding: 10px 0
 .button
-	display: inline-block
-	background: $primary
-	border-radius: 2px
-	padding: 10px 15px
-	font: 700 15px/15px "Arial"
-	color: #ddd
-	cursor: pointer
-	text-shadow: rgba(0,0,0,0.5)
-	text-decoration: none
+	-webkit-appearance: none
+	outline: none
 	border: 0
+	border-radius: 2px
+	padding: 5px 10px
+	color: #fff
 .button-secondary
 	background: lighten($primary, 10%)
 .button-warning
-	background: #EB2E3C
+	background: $warning
+
+input
+	padding: 5px
+	width: 100%
+	border-radius: 2px
+	border: 0
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.4) inset
+	outline: none
+
 a
 	text-decoration: none
-#add_company_sidebar
+aside,#main
+	float: left
+	height: 100vh
+aside
 	width: $SIDEBAR_WIDTH
-	position: absolute
-	padding: 10px
-	height: 100vh
-	left: -$SIDEBAR_WIDTH
-	background: darken($primary, 10%)
-	transition: left 0.5s
-	color: #fff
-	input
-		border: 1px solid #222
-		padding: 5px
-		border-radius: 4px
-	&.show
-		left: 0
-#add_company_button
-	float: right
-	display: inline-block
-	cursor: pointer
-#app
-	height: 100vh
-	aside
-		width: $SIDEBAR_WIDTH
-		background: $primary
-		height: 100%
-		float: left
-		h2, h2 a
-			color: #eee
-			font: 100 18px/18px "Exo2Medium","Helvetica Neue"
-		h2
-			padding: 10px
-		ul a
-			font: 100 15px/15px "Exo2Light"
-			text-transform: uppercase
-			color: lighten($primary, 20%)
-			display: block
-			padding: 5px 20px
-			&:hover, &.active
-				color: #fff
-				background: rgba(255,255,255,0.05)
-
-	#main
-		float: left
-		width: calc(100% - 200px)
-		height: 100vh
-		overflow-y: auto
-		background: #f3f3f3
+	background: $primary
+	h2, h2 a
+		color: #fff
+		font: 500 15px/15px "Exo2Light"
+	h2
 		padding: 10px
-		#add_task
-			top: -300px
-			transition: all 0.5s
-			z-index: 10
-			left: calc(50% - 250px)
-			background: #fff
-			width: 500px
-			padding: 20px
-			position: absolute
+	ul a
+		display: block
+		padding: 5px 20px
+		color: #fff
+		font: 800 13px/13px arial
+		&:hover
+			background: lighten($primary, 5%)
+	form
+		padding: 5px 10px
+		.kinda-hidden
+			opacity: 0.3
+		#hidden-form
+			display: none
 			&.show
-				top: calc(50% - 150px)
-			input, textarea
-				outline: none
 				display: block
-				border: 0
-				background: rgba(255, 255, 255, 0)
-				border-bottom: 1px solid #aaa
-				width: 50%
-				width: 100%
-			input
-				font: 500 19px/19px "Exo2Light"
-				padding: 10px 20px
-		.task
-			border-radius: 3px
-			box-shadow: 0 2px 2px rgba(0,0,0,0.3)
-			padding: 10px
-			margin: 10px 0
-			background: #fff
-			button
-				float: right
-				&.active
-					background: #EB2E3C
-			ul
-				list-style-type: none
-			.bar
-				background: #fff
-				margin: 10px 0
-				color: #333
-				font: 100 12px/12px arial
-				padding: 7px 5px
+		label
+			font: 800 9px/9px arial
+			display: block
+			color: #fff
+			margin: 5px 0
+#main
+	background: #f8f8f8
+	overflow-y: auto
+	width: calc(100% - 200px)
+	padding: 20px
+	table
+		border-collapse: collapse
+		border-spacing: 0
+		width: 95%
+		margin: 0 auto
+		font: 100 13px/13px arial
+		color: #505050
+		th, td
+			text-align: left
+			padding: 5px 10px
+		tr.task:last-child td
+			padding: 5px 10px 20px 10px
+			border-bottom: 1px solid #aaa
+		.button
+			background: transparent
+			border: 0
+			font-size: 18px
+			&:hover
+				color: $warning

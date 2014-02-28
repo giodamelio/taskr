@@ -1,6 +1,6 @@
 var db = new localStorageDB('taskr', localStorage);
 
-//db.drop();
+//db.drop(); db = new LocalStorageDB('taskr', localStorage);
 //i uncomment this and run the app once to clear the database and comment it out and run the app again
 
 if(db.isNew()){
