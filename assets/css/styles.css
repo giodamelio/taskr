@@ -101,18 +101,18 @@ aside {
     #main table th, #main table td {
       text-align: left;
       padding: 5px 10px; }
-    #main table tr.task:last-child td {
-      padding: 5px 10px 20px 10px;
-      border-bottom: 1px solid #aaaaaa; }
+    #main table tbody tr:last-child {
+      border-top: 1px solid #aaaaaa;
+      font-weight: 800; }
     #main table .button {
-      background: transparent;
+      background: #222222;
       border: 0;
       font-size: 18px;
-      color: #333333; }
+      color: white; }
       #main table .button:hover {
         color: #eb2e3c; }
-    #main table .complete {
-      color: #eeeeee;
-      text-decoration: line-through; }
+    #main table .complete-true {
+      opacity: 0.5; }
     #main table .active .button {
-      color: #eb2e3c; }
+      background: #eb2e3c;
+      color: white; }

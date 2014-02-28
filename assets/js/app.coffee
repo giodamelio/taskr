@@ -60,20 +60,14 @@ taskr.controller('indexCtrl', ($scope, $location) ->
 taskr.controller('taskCtrl', ($scope, $location, $routeParams) ->
 	
 	$scope.company = db.query('companies', {ID : $routeParams.companyId})[0]
-
+	$scope.company.time_spent = 0
 	$scope.tasks = db.query('tasks', {company : $routeParams.companyId})
-	
-	for task in $scope.tasks
-		task.active = 'inactive'
-		task.entries = db.query('entries', {task: task.ID})
-		task.start_time = null
 
 	$scope.time_spent = (entry, denomination) ->
 		start = new Date(entry.started_at)
 		end = new Date(entry.ended_at)
 		time = (end - start) / 1000 / 60
-		time = time / 60 if (denomination == "hours")
-		console.log(time)
+		time = time / 60 if denomination == "hours"
 		time
 
 	$scope.total_time = (task) ->
@@ -85,6 +79,12 @@ taskr.controller('taskCtrl', ($scope, $location, $routeParams) ->
 
 	$scope.revenue = (task) ->
 		$scope.company.hourly_rate * $scope.total_time(task) / 60
+
+	$scope.total_revenue = () ->
+		revenue = 0
+		for task in $scope.tasks
+			revenue += $scope.revenue(task)
+		revenue
 	
 	$scope.add = () ->
 		return if $scope.title.length == 0
@@ -92,13 +92,14 @@ taskr.controller('taskCtrl', ($scope, $location, $routeParams) ->
 			company: $routeParams.companyId,
 			title: $scope.title,
 			description: $scope.description,
-			complete: false
+			complete: false,
 		}
 		$('new-task-title').value = ''
 		id = db.insert('tasks', data)
 		db.commit()
 		data.ID = id
 		data.entries = []
+		data.start_time = null
 		$scope.tasks.push(data)
 
 	$scope.completed = () ->
@@ -124,6 +125,12 @@ taskr.controller('taskCtrl', ($scope, $location, $routeParams) ->
 			row
 		)
 		db.commit()
+
+	for task in $scope.tasks
+		task.active = 'inactive'
+		task.entries = db.query('entries', {task: task.ID})
+		task.start_time = null
+		$scope.company.time_spent += $scope.total_time task
 )
 
 taskr.controller('settingsCtrl', ($scope) ->

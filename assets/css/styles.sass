@@ -98,18 +98,18 @@ aside
 		th, td
 			text-align: left
 			padding: 5px 10px
-		tr.task:last-child td
-			padding: 5px 10px 20px 10px
-			border-bottom: 1px solid #aaa
+		tbody tr:last-child
+			border-top: 1px solid #aaa
+			font-weight: 800
 		.button
-			background: transparent
+			background: $primary
 			border: 0
 			font-size: 18px
-			color: #333
+			color: #fff
 			&:hover
 				color: $warning
-		.complete
-			color: #eee
-			text-decoration: line-through
+		.complete-true
+			opacity: 0.5
 		.active .button
-			color: $warning
+			background: $warning
+			color: #fff

@@ -16,12 +16,19 @@
 			<td></td>
 			<td></td>
 		</tr>
-		<tr ng-repeat="task in tasks" class="task {{task.active}} {{task.completed()}}">
+		<tr ng-repeat="task in tasks" class="task {{task.active}} complete-{{task.complete}}">
 			<td><button class="button" ng-click="toggle_timer(task)"><i class="fa fa-clock-o"></i></button></td>
 			<td><input type="checkbox" ng-model="task.complete" ng-click="toggle_complete(task)"></td>
 			<td>{{task.title}}</td>
 			<td>{{total_time(task) | number:0}} Minutes</td>
 			<td>{{revenue(task) | number:1}} {{company.currency | uppercase}}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td>Totals</td>
+			<td>{{company.time_spent / 60 | number:0}} Hours</td>
+			<td>{{total_revenue() | number:0}} {{company.currency}}</td>
 		</tr>
 	</tbody>
 </table>

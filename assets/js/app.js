@@ -62,22 +62,14 @@
   taskr.controller('indexCtrl', function($scope, $location) {});
 
   taskr.controller('taskCtrl', function($scope, $location, $routeParams) {
-    var task, _i, _len, _ref;
+    var task, _i, _len, _ref, _results;
     $scope.company = db.query('companies', {
       ID: $routeParams.companyId
     })[0];
+    $scope.company.time_spent = 0;
     $scope.tasks = db.query('tasks', {
       company: $routeParams.companyId
     });
-    _ref = $scope.tasks;
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      task = _ref[_i];
-      task.active = 'inactive';
-      task.entries = db.query('entries', {
-        task: task.ID
-      });
-      task.start_time = null;
-    }
     $scope.time_spent = function(entry, denomination) {
       var end, start, time;
       start = new Date(entry.started_at);
@@ -86,23 +78,32 @@
       if (denomination === "hours") {
         time = time / 60;
       }
-      console.log(time);
       return time;
     };
     $scope.total_time = function(task) {
-      var entries, entry, time, _j, _len1;
+      var entries, entry, time, _i, _len;
       entries = db.query('entries', {
         task: task.ID
       });
       time = 0;
-      for (_j = 0, _len1 = entries.length; _j < _len1; _j++) {
-        entry = entries[_j];
+      for (_i = 0, _len = entries.length; _i < _len; _i++) {
+        entry = entries[_i];
         time += $scope.time_spent(entry, 'minutes');
       }
       return time;
     };
     $scope.revenue = function(task) {
       return $scope.company.hourly_rate * $scope.total_time(task) / 60;
+    };
+    $scope.total_revenue = function() {
+      var revenue, task, _i, _len, _ref;
+      revenue = 0;
+      _ref = $scope.tasks;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        task = _ref[_i];
+        revenue += $scope.revenue(task);
+      }
+      return revenue;
     };
     $scope.add = function() {
       var data, id;
@@ -120,11 +121,12 @@
       db.commit();
       data.ID = id;
       data.entries = [];
+      data.start_time = null;
       return $scope.tasks.push(data);
     };
     $scope.completed = function() {
-      var _ref1;
-      return (_ref1 = task.complete) != null ? _ref1 : {
+      var _ref;
+      return (_ref = task.complete) != null ? _ref : {
         "completed": "incomplete"
       };
     };
@@ -147,7 +149,7 @@
         return task.entries.push(entry_data);
       }
     };
-    return $scope.toggle_complete = function(task) {
+    $scope.toggle_complete = function(task) {
       task.complete = !task.complete;
       db.update('tasks', {
         ID: task.ID
@@ -157,6 +159,18 @@
       });
       return db.commit();
     };
+    _ref = $scope.tasks;
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      task = _ref[_i];
+      task.active = 'inactive';
+      task.entries = db.query('entries', {
+        task: task.ID
+      });
+      task.start_time = null;
+      _results.push($scope.company.time_spent += $scope.total_time(task));
+    }
+    return _results;
   });
 
   taskr.controller('settingsCtrl', function($scope) {
