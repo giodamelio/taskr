@@ -65,21 +65,23 @@ taskr.controller('taskCtrl', ($scope, $location, $routeParams) ->
 	
 	for task in $scope.tasks
 		task.active = 'inactive'
-		task.entries = db.qery('entries', {task: task.ID})
+		task.entries = db.query('entries', {task: task.ID})
+		task.start_time = null
 
 	$scope.time_spent = (entry, denomination) ->
 		start = new Date(entry.started_at)
 		end = new Date(entry.ended_at)
 		time = (end - start) / 1000 / 60
-		time = denomination == "minutes" ? time : time / 60
-		Math.round(time)
+		time = time / 60 if (denomination == "hours")
+		console.log(time)
+		time
 
 	$scope.total_time = (task) ->
 		entries = db.query('entries', {task: task.ID})
-		total_time = 0
+		time = 0
 		for entry in entries
-			total_time += $scope.time_spent entry, 'minutes'
-		total_time
+			time += $scope.time_spent entry, 'minutes'
+		time
 
 	$scope.revenue = (task) ->
 		$scope.company.hourly_rate * $scope.total_time(task) / 60
@@ -92,12 +94,15 @@ taskr.controller('taskCtrl', ($scope, $location, $routeParams) ->
 			description: $scope.description,
 			complete: false
 		}
+		$('new-task-title').value = ''
 		id = db.insert('tasks', data)
 		db.commit()
 		data.ID = id
 		data.entries = []
 		$scope.tasks.push(data)
-		$scope.hide_add()
+
+	$scope.completed = () ->
+		task.complete ? "completed" : "incomplete"
 
 	$scope.toggle_timer = (task) ->
 		if task.start_time == null
@@ -106,12 +111,12 @@ taskr.controller('taskCtrl', ($scope, $location, $routeParams) ->
 		else
 			task.end_time = new Date()
 			entry_data = {task: task.ID, started_at: task.start_time, ended_at: task.end_time}
+			task.start_time = null
+			task.active = false
 			db.insert('entries', entry_data)
 			db.commit()
 			task.entries.push(entry_data)
-			task.start_time = null
-			task.active = false
-	
+
 	$scope.toggle_complete = (task) ->
 		task.complete = !task.complete;
 		db.update('tasks', {ID : task.ID}, (row) ->

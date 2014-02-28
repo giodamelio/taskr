@@ -42,7 +42,7 @@ p {
 .button-warning {
   background: #eb2e3c; }
 
-input {
+input[type='text'] {
   padding: 5px;
   width: 100%;
   border-radius: 2px;
@@ -107,6 +107,12 @@ aside {
     #main table .button {
       background: transparent;
       border: 0;
-      font-size: 18px; }
+      font-size: 18px;
+      color: #333333; }
       #main table .button:hover {
         color: #eb2e3c; }
+    #main table .complete {
+      color: #eeeeee;
+      text-decoration: line-through; }
+    #main table .active .button {
+      color: #eb2e3c; }

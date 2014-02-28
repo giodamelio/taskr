@@ -42,7 +42,7 @@ p
 .button-warning
 	background: $warning
 
-input
+input[type='text']
 	padding: 5px
 	width: 100%
 	border-radius: 2px
@@ -105,5 +105,11 @@ aside
 			background: transparent
 			border: 0
 			font-size: 18px
+			color: #333
 			&:hover
 				color: $warning
+		.complete
+			color: #eee
+			text-decoration: line-through
+		.active .button
+			color: $warning
