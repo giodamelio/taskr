@@ -4,15 +4,15 @@ $ = (id) -> document.getElementById(id)
 
 taskr.config(['$routeProvider',($routeProvider) ->
     $routeProvider.when('/', {
-        templateUrl: 'views/index.html',
+        templateUrl: '../views/index.html',
         controller : 'indexCtrl'
     }).
     when('/settings',{
-        templateUrl: 'views/settings.html',
+        templateUrl: '../views/settings.html',
         controller: 'settingsCtrl'
     }).
     when('/company/:companyId',{
-        templateUrl: 'views/tasks.html',
+        templateUrl: '../views/tasks.html',
         controller : 'taskCtrl'
     })
     .otherwise(($location) ->
@@ -136,5 +136,5 @@ taskr.controller('taskCtrl', ($scope, $location, $routeParams) ->
 taskr.controller('settingsCtrl', ($scope) ->
     $scope.reset = () ->
         db.drop()
-        window.location = "/app.html"
+        window.location = "/views/app.html"
 )

@@ -1,6 +1,6 @@
 {
   "name": "taskr",
-  "main": "app.html",
+  "main": "out/views/app.html",
   "window": {
     "toolbar": false,
     "frame": true,
