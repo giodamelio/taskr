@@ -15,7 +15,7 @@ table
                     input#new-task-title(type='text', ng-model='title', placeholder='Add a New Task')
             td
             td
-        tr.task(ng-repeat='task in tasks' class='{{task.active}}.complete-{{task.complete}}')
+        tr.task(ng-repeat='task in tasks' class='{{task.active}} complete-{{task.complete}}')
             td
                 button.button(ng-click='toggle_timer(task)')
                     i.fa.fa-clock-o
