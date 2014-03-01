@@ -1,0 +1,32 @@
+table
+    thead
+        tr
+            th Track
+            th Done
+            th Task
+            th Time Tracked
+            th Revenue
+    tbody
+        tr
+            td
+            td
+            td
+                form(ng-submit='add()')
+                    input#new-task-title(type='text', ng-model='title', placeholder='Add a New Task')
+            td
+            td
+        tr.task(ng-repeat='task in tasks' class='{{task.active}}.complete-{{task.complete}}')
+            td
+                button.button(ng-click='toggle_timer(task)')
+                    i.fa.fa-clock-o
+            td
+                input(type='checkbox', ng-model='task.complete', ng-click='toggle_complete(task)')
+            td {{task.title}}
+            td {{total_time(task) | number:0}} Minutes
+            td {{revenue(task) | number:1}} {{company.currency | uppercase}}
+        tr
+            td
+            td
+            td Totals
+            td {{company.time_spent / 60 | number:0}} Hours
+            td {{total_revenue() | number:0}} {{company.currency}}
