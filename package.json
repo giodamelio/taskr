@@ -15,6 +15,7 @@
     "coffee-script": "^1.7.1",
     "gulp-util": "^2.2.14",
     "gulp-coffee": "^1.4.1",
-    "gulp-jade": "^0.4.2"
+    "gulp-jade": "^0.4.2",
+    "gulp-sass": "^0.7.1"
   }
 }

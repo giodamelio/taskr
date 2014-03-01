@@ -2,6 +2,7 @@ gulp = require "gulp"
 gutil = require "gulp-util"
 coffee = require "gulp-coffee"
 jade = require "gulp-jade"
+sass = require "gulp-sass"
 
 # Compile the coffeescript
 gulp.task "coffee", ->
@@ -15,8 +16,14 @@ gulp.task "jade", ->
         .pipe(jade())
         .pipe(gulp.dest("out/views/"))
 
+# Compile the sass
+gulp.task "sass", ->
+    gulp.src("src/sass/**/*.scss")
+        .pipe(sass())
+        .pipe(gulp.dest("out/css/"))
+
 # Run the dev enviroment
-gulp.task "dev", ["coffee", "jade"]
+gulp.task "dev", ["coffee", "jade", "sass"]
 
 # child_process = require "child_process"
 # fs = require "fs"
