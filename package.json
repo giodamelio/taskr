@@ -1,10 +1,19 @@
 {
   "name": "taskr",
   "main": "app.html",
-  "window" : {
-  	"toolbar" : false,
-  	"frame" : true,
-  	"width" : 800,
-  	"height" : 500
+  "window": {
+    "toolbar": false,
+    "frame": true,
+    "width": 800,
+    "height": 500
+  },
+  "scripts": {
+    "dev": "gulp dev --require coffee-script/register"
+  },
+  "devDependencies": {
+    "gulp": "^3.5.2",
+    "coffee-script": "^1.7.1",
+    "gulp-util": "^2.2.14",
+    "gulp-coffee": "^1.4.1"
   }
 }
