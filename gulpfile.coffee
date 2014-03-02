@@ -4,6 +4,7 @@ coffee = require "gulp-coffee"
 jade = require "gulp-jade"
 stylus = require "gulp-stylus"
 
+#### Precompilers #############################################################
 # Compile the coffeescript
 gulp.task "coffee", ->
     gulp.src("src/coffee/**/*.coffee")
@@ -27,8 +28,26 @@ gulp.task "vendor", ->
     gulp.src("src/vendor/**/*.*")
         .pipe(gulp.dest("out/vendor/"))
 
+###############################################################################
+#### Watch and Auto-recompile #################################################
+
+gulp.task "watch", ->
+    # Watch the coffee
+    gulp.watch "src/coffee/**/*.coffee", ["coffee"]
+
+    # Watch the jade
+    gulp.watch "src/jade/**/*.jade", ["jade"]
+
+    # Watch the stylus
+    gulp.watch "src/stylus/**/*.styl", ["stylus"]
+
+###############################################################################
+#### Exposed tasks ############################################################
+
 # Run the dev enviroment
-gulp.task "dev", ["coffee", "jade", "stylus", "vendor"]
+gulp.task "dev", ["coffee", "jade", "stylus", "vendor", "watch"]
+
+###############################################################################
 
 # child_process = require "child_process"
 # fs = require "fs"
