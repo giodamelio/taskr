@@ -17,6 +17,7 @@
     "gulp-coffee": "^1.4.1",
     "gulp-jade": "^0.4.2",
     "gulp-stylus": "0.0.13",
-    "ecstatic": "^0.4.13"
+    "ecstatic": "^0.4.13",
+    "gulp-livereload": "^1.2.0"
   }
 }

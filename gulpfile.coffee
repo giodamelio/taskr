@@ -5,6 +5,7 @@ gutil = require "gulp-util"
 coffee = require "gulp-coffee"
 jade = require "gulp-jade"
 stylus = require "gulp-stylus"
+livereload = require "gulp-livereload"
 ecstatic = require "ecstatic"
 
 #### Precompilers #############################################################
@@ -13,18 +14,21 @@ gulp.task "coffee", ->
     gulp.src("src/coffee/**/*.coffee")
         .pipe(coffee({bare:true}).on("error", gutil.log))
         .pipe(gulp.dest("out/js/"))
+        .pipe(livereload())
 
 # Compile the jade
 gulp.task "jade", ->
     gulp.src("src/jade/**/*.jade")
         .pipe(jade())
         .pipe(gulp.dest("out/views/"))
+        .pipe(livereload())
 
 # Compile the stylus
 gulp.task "stylus", ->
     gulp.src("src/stylus/**/*.styl")
         .pipe(stylus())
         .pipe(gulp.dest("out/css/"))
+        .pipe(livereload())
 
 # Copy vendor files
 gulp.task "vendor", ->
