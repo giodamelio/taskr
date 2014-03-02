@@ -8,7 +8,7 @@
     "height": 500
   },
   "scripts": {
-    "dev": "gulp dev --require coffee-script/register"
+    "dev": "gulp dev"
   },
   "devDependencies": {
     "gulp": "^3.5.2",
