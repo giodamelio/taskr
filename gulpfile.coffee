@@ -1,8 +1,11 @@
+http = require "http"
+
 gulp = require "gulp"
 gutil = require "gulp-util"
 coffee = require "gulp-coffee"
 jade = require "gulp-jade"
 stylus = require "gulp-stylus"
+ecstatic = require "ecstatic"
 
 #### Precompilers #############################################################
 # Compile the coffeescript
@@ -42,10 +45,17 @@ gulp.task "watch", ->
     gulp.watch "src/stylus/**/*.styl", ["stylus"]
 
 ###############################################################################
+#### Misc Tasks ###############################################################
+
+gulp.task "server", ->
+    http.createServer(ecstatic({ root: __dirname + "/out" })).listen(3141)
+    console.log "Server started. http://localhost:3141/views/app.html"
+
+###############################################################################
 #### Exposed tasks ############################################################
 
 # Run the dev enviroment
-gulp.task "dev", ["coffee", "jade", "stylus", "vendor", "watch"]
+gulp.task "dev", ["coffee", "jade", "stylus", "vendor", "watch", "server"]
 
 ###############################################################################
 
