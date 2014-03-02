@@ -1,6 +1,6 @@
-#taskr
+# taskr
 
-##About
+## About
 Taskr is a time-tracking task manager. You can add projects and then add tasks to those projects and measure how much time is spent on each of these tasks. The plan is to export billables per project (each project has a hourly rate) for each month.
 
 It's a [node-webkit](https://github.com/rogerwang/node-webkit) app so it needs to be bundled and shipped via [node-webkit](https://github.com/rogerwang/node-webkit).
@@ -8,13 +8,38 @@ It's a [node-webkit](https://github.com/rogerwang/node-webkit) app so it needs t
 It can be developed under http://localhost though as it's just vanilla JavaScript and HTML. It uses [angular](http://angularjs.org/)
 to manage views and logic and [localStorageDB](http://nadh.in/code/localstoragedb/) to handle database transactions.
 
-##How to run
+## Development Server
 There are two ways to run the app during development (when it's released it will be packed in its own executable).
 
-1. Drop it in your webroot folder and view it in your chrome-browser under localhost (or any other vhosts config you want)
-2. Drag and Drop the folder on the node-webkit executable for your platform (on OS X you can go open -n -a node-webkit path/to/taskr in the terminal if you installed node-webkit using npm with the -g flag)
+### Build script + browser
 
-I suggest running it via chrome during development just because the developer tools are really helpful.
+This is the suggested method for development, it allows for auto-compilation and livereload via a [livereload browser extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)
 
-(as an aside, to test database-queries run them through console.table() i.e. console.table(db.query('tasks')).
-This will output a nice and readable table in the developer tools.
+1. Install the dependencies. **You only need to do this the first time**. 
+
+        npm install
+
+2. Run the build script.
+
+        npm run dev
+
+3. Open in your browser of choice ([http://localhost:3141/views/app.html](http://localhost:3141/views/app.html)).
+
+4. Enable livereload in your browser and you should be good to go.
+
+
+
+### Build script + node-webkit
+
+1. Install the dependencies. **You only need to do this the first time**. 
+
+        npm install
+
+2. Run the build script.
+
+        npm run dev
+
+3. Run with node-webkit from your project root.
+
+        nw .
+
