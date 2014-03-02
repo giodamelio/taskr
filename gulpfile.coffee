@@ -2,7 +2,7 @@ gulp = require "gulp"
 gutil = require "gulp-util"
 coffee = require "gulp-coffee"
 jade = require "gulp-jade"
-sass = require "gulp-sass"
+stylus = require "gulp-stylus"
 
 # Compile the coffeescript
 gulp.task "coffee", ->
@@ -16,10 +16,10 @@ gulp.task "jade", ->
         .pipe(jade())
         .pipe(gulp.dest("out/views/"))
 
-# Compile the sass
-gulp.task "sass", ->
-    gulp.src("src/sass/**/*.scss")
-        .pipe(sass())
+# Compile the stylus
+gulp.task "stylus", ->
+    gulp.src("src/stylus/**/*.styl")
+        .pipe(stylus())
         .pipe(gulp.dest("out/css/"))
 
 # Copy vendor files
@@ -28,7 +28,7 @@ gulp.task "vendor", ->
         .pipe(gulp.dest("out/vendor/"))
 
 # Run the dev enviroment
-gulp.task "dev", ["coffee", "jade", "sass", "vendor"]
+gulp.task "dev", ["coffee", "jade", "stylus", "vendor"]
 
 # child_process = require "child_process"
 # fs = require "fs"
